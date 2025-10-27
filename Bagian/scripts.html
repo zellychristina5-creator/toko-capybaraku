@@ -1,0 +1,43 @@
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+    const kategorilinks = document.querySelectorAll(".kategori-item");
+    const products = document.querySelectorAll(".produk");
+
+    kategorilinks.forEach(link => {
+      link.addEventListener("click", function(e) {
+         e.preventDefault();
+         const kategori = (this.dataset.kategori || "").toLowerCase();
+
+         product.forEach(product => {
+          const prodkat = this.dataset.kategori.toLowerCase();
+          if (kategori === "semua" || product.dataset.kategori === kategori) {
+             product.style.display = "block";
+           } else {
+            proudct.style.display= "none";
+           }
+        });
+          
+            const sectionProduk = document.getElementById("kategori");
+            if (sectionProduk) {
+              sectionProduk.scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        });
+
+
+      const pesanBtns = document.querySelectorAll(".pesan-btn");
+        pesanBtns.forEach(btn => {
+          btn.addEventListener("click", function() {
+            const cardBody = this.closest(".card-body");
+            if (!cardBody) return;
+
+            const nama = cardBody.querySelector(".nama-produk").innerText;
+            const harga = cardBody.querySelector(".harga-produk").innerText;
+            const nomorWA = "6285962902450";
+            const pesan = `Halo, saya tertarik membeli *${nama}* dengan harga *${harga}*. Apakah masih tersedia?`;
+            const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`; 
+            window.open(url, "_blank");
+          });
+        });
+    </script>
+ 

@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toko Kapibaraku</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css"/>
+    <style>
+      .jumbotron {
+        background-image: url('img/bacground(6).jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        padding: 120px 0;
+        position: relative;
+      }
+      .jumbotron::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 0;
+      }
+
+      .jumbotron img,
+      .jumbotron h1 {
+        position: relative;
+        z-index: 1;
+      }
+      .jumbotron img{
+        width: 250px;
+        height: 259px;
+      }
+      .card img {  
+        width: 100%;
+        max-width: 150px;
+        object-fit: cover;
+        border-radius: 10px ;
+        margin: 0 auto;      
+        }
+      .marquee {
+        background-color: crimson;
+        color: white ;      
+        padding: 10px 0;
+        font-size: 1.1rem;
+      }
+      body {
+  background-color: #5f5f5f; /* abu-abu agak tua */
+  color: white; /* teks putih biar jelas */
+}
+          
+       .card {
+       background-color: rgb(145, 144, 144); /* warna putih untuk seluruh kotak */
+       border: 3px solid #df3a3a;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2); /* efek glow di background hitam */
+      }
+      .card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .card .card-body {
+        background: #fff;           
+        text-align: center;
+        padding: 15px;
+      }
+
+      #about {
+        padding: 60px 0;
+      }
+      #about h2 {
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      #about p {
+        font-size: 1.1rem;
+      }
+      .btn-wa{
+        background-color: color-mix(in srgb,
+    #FF69B4 70%,  
+    #bc1c1c 30% 
+      );
+      color: white;
+    }
+
+    .btn-wa:hover {
+      background-color: color-mix(in srgb,
+        #FF69B4 60%,
+        #bc1c1c 40%
+      );
+      color: white;
+    }
+
+    kapibara-hiasan {
+    background-color: #fff7fa;
+    padding: 50px 0;
+    border-top: 3px solid #ffc4d6;
+    border-bottom: 3px solid #ffc4d6;
+  }
+    .kapibara-hiasan p {
+      color: white !important;
+    }
+  .kapibara-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+  }
+
+  .fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === Animasi produk muncul satu per satu === */
+.produk {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.produk.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+   </style>
+  </head>
+  <body id="home">    
+   <nav class="navbar navbar-expand-lg bg-danger fixed-top shadow-sm navbar-dark">
+    <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="img/download logo.jpg" alt="Logo Toko" width="60" class="me-2 rounded-circle"/>
+      <span>Toko Capybaraku</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Berada</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" href="#about">Tentang Kami</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="Kategoridropdown">Kategori Produk</a>
+          <ul class="dropdown-menu"aria-labelledby="Kategoridropdown">
+            <li><a class="dropdown-item kategori-item" href="#" data-kategori="semua">Semua Produk (所有产品)</a></li>
+            <li><a class="dropdown-item kategori-item" href="#" data-kategori="notebook">Note book Capybara(笔记本) </a></li>
+            <li><a class="dropdown-item kategori-item" href="#" data-kategori="gantungan">Gantungan Capybara(钥匙扣)</a></li>
+            <li><a class="dropdown-item kategori-item" href="#" data-kategori="alat">Alat tulis Capybara(文具)</a></li>
+            <li><a class="dropdown-item kategori-item" href="#" data-kategori="kotak">Kotak pensil Capybara (铅笔盒) </a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="Kategoridropdown">Kontak Kami</a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="https://www.instagram.com/zelllym?igsh=ZHpxajFiY3N5MzQw" target="_blank" class="dropdown-item">
+        <i class="fa-brands fa-instagram me-2"></i>Instagram
+      </a>
+    </li>
+    <li>
+      <a href="https://www.tiktok.com/@zell_ww.lym?_t=ZS-90lRSqVXHzM&_r=1" target="_blank" class="dropdown-item">
+        <i class="fa-brands fa-tiktok me-2"></i>TikTok
+      </a>
+    </li>
+    <li>
+      <a href="https://wa.me/62895962902450" target="_blank" class="dropdown-item">
+        <i class="fa-brands fa-whatsapp me-2"></i>WhatsApp
+      </a>
+    </li>
+  </ul>
+</li>
+        <li class="nav-item">
+          <a class="nav-link active" href="profil.html">My Profil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--jumbotron-->
+<section class="jumbotron text-center mt-5 pt-5">
+  <img src="img/download logo.jpg" alt="Toko Kapibara" class="rounded-circle img-thumbnail">
+  <h1 class="display-5 mt-3 fw-bold">Welcome to my Capybara store</h1>
+</section>
+
+  <!--textjalan-->
+  <div class="marquee">
+    <marquee behavior=""direction=""> 你们喜欢Capybara吗？快来我们的网店看看吧，很多东西你们喜欢的</marquee>
+  </div>
+  <!--tentang kami-->
+  <section id="about" class="py-5">
+    <div class="container text-center">
+      <h2>Tentang kami</h2>
+      <p class="mt-3">
+        <strong>  欢迎来到我们的capybara 网点. 在我们的capybara网点，这里是值得信赖的学习用品中心，我们致力于提供高质量的学习工具，以支持孩子、学生以及所有想要持续学习的人的教育过程。在本店，如果您有任何问题，
+        我们将为您提供最优质的客户服务。快来我们的店购买，价格非常实惠。我们期待您的光临购买；）
+        </strong>
+      </p>
+    <!-- 🩷 Bagian Hiasan 2 Kolom Kapibara -->
+<section class="kapibara-hiasan fade-in">
+  <div class="container">
+    <div class="row text-center">
+      <!-- Kolom 1 -->
+      <div class="col-md-6 d-flex align-items-center justify-content-center gap-3 mb-4 mb-md-0">
+        <img src="img/hiasan kiri.jpg" alt="kapibara kiri" class="kapibara-img">
+        <div class="text-start">
+          <h5 class="fw-bold text-danger m-0">Lucu & Imut!</h5>
+          <p class="text-muted m-0">有很多可爱的东西你们喜欢的♡♡</p>
+        </div>
+      </div>
+
+      <!-- Kolom 2 -->
+      <div class="col-md-6 d-flex align-items-center justify-content-center gap-3">
+        <img src="img/hiasan kanan.jpg" alt="kapibara kanan" class="kapibara-img">
+        <div class="text-start">
+          <h5 class="fw-bold text-danger m-0">Peralatan Unik!</h5>
+          <p class="text-muted m-0">让你们学习有感兴趣！</p>
+        </div>
+      </div>
+    </div>
+  </div>  
+    </div>
+  </section>
+
+    <!--Produk note book -->
+   <section id="kategori" class=" pb-5 pt-4">
+  <div class="container">
+    <h2 class="text-center mb-4">Produk Kami</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="produk-list">
+
+      <div class="col produk" data-kategori="notebook">
+        <div class="card">
+           <img src="img/download 70.jpeg" alt="dowload (4)" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="nama-produk">水豚 Note book Capybara A5 cute</h5>
+                <p class="harga-produk">Rp 15.000 </p>
+                <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+              </div>
+            </div>
+          </div>
+         
+
+      <div class="col produk" data-kategori="notebook">
+         <div class="card">
+            <img src="img/note 8.jpeg" alt="note 8" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="nama-produk">水豚 Note book Capybara type 2 A5 </h5>
+                <p class="harga-produk">Rp 25.000 </p>
+                <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+              </div>
+            </div>
+          </div>
+
+  
+      <div class="col produk" data-kategori="notebook">
+        <div class="card">
+          <img src="img/binder1.jpeg" alt="binder" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="nama-produk">水豚 Binder capybara medium  </h5>
+              <p class="harga-produk">Rp 35.000 </p>
+              <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+            </div>
+          </div>
+        </div>
+
+      <div class="col produk" data-kategori="notebook">
+        <div class="card">
+          <img src="img/note book buku diary.jpeg" alt="notebook" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="nama-produk">水豚 Note book Diary capybara   </h5>
+              <p class="harga-produk">Rp 45.000 </p>
+              <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+            </div>
+          </div>
+        </div>
+   
+      <!--Produk alat tulis -->
+   <div class="col produk" data-kategori="alat">
+      <div class="card">
+          <img src="img/download (3).jpeg" alt="owload (3)" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Pena hitam Capybara 1 pcs</h5>
+            <p class="harga-produk">Rp 25.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+         </div>
+       </div>
+      
+    <div class="col produk" data-kategori="alat">
+      <div class="card">
+        <img src="img/alat tulis 3.jpeg" alt="alat tulis(3)" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="nama-produk">水豚 Penggaris Capybara 15 cm cute </h5>
+          <p class="harga-produk">Rp 10.000 </p>
+          <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+      <div class="col produk" data-kategori="alat">
+        <div class="card">
+              <img src="img/alat tulis 2.jpeg" alt=" alat tulis(2)" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="nama-produk">水豚 Stabilo Capybara 6 warna cantik </h5>
+                <p class="harga-produk">Rp 27.000 </p>
+                <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+              </div>
+            </div>
+          </div>
+
+      <div class="col produk" data-kategori="alat">
+        <div class="card">
+              <img src="img/pengahapus.jpeg" alt="penghapus" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="nama-produk">水豚 Penghapus Capybara cute  </h5>
+                <p class="harga-produk">Rp 10.000 </p>
+                <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+              </div>
+            </div>
+          </div>
+
+ <!--Produk kotak pensil  -->
+    <div class="col produk" data-kategori="kotak">
+      <div class="card">
+        <img src="img/images (1).jpeg" alt="images (1)" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Pencil case 3D Capybara </h5>
+            <p class="harga-produk">Rp 32.000 </p>
+          <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col produk" data-kategori="kotak">
+      <div class="card">
+        <img src="img/images.jpeg" alt="images" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 style 2 pencil case capybara cute </h5>
+            <p class="harga-produk">Rp 30.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+
+    <div class="col produk" data-kategori="kotak">
+      <div class="card">
+        <img src="img/download (4).jpeg" alt="dowlond(4)" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Boneka pencil case capybara </h5>
+            <p class="harga-produk">Rp 37.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+
+    <div class="col produk" data-kategori="kotak">
+      <div class="card">
+        <img src="img/kotak pensil.jpeg" alt="kotak pensil" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 16 tempat pencil case capybara </h5>
+            <p class="harga-produk">Rp 38.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+<!--Gantungan-->
+    <div class="col produk" data-kategori="gantungan">
+      <div class="card">
+        <img src="img/kapibara 3.jpeg" alt="kapibara.3" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Gantungan style 2 rantai capybara cute </h5>
+            <p class="harga-produk">Rp 10.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+
+    <div class="col produk" data-kategori="gantungan">
+      <div class="card">
+        <img src="img/download (7).jpeg" alt="dowlond(7)" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Gantungan Boneka capybara  </h5>
+            <p class="harga-produk">Rp 35.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col produk" data-kategori="gantungan">
+      <div class="card">
+        <img src="img/kapibara 18.jpg" alt="kapibara.18" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Gantungan capybara circle cute </h5>
+            <p class="harga-produk">Rp 38.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+        
+      <div class="col produk" data-kategori="gantungan">
+      <div class="card">
+        <img src="img/kapibara6.jpg" alt="kapibara.6" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="nama-produk">水豚 Gantungan capybara selfie cute </h5>
+            <p class="harga-produk">Rp 36.000 </p>
+            <button class="btn btn-wa pesan-btn"><i class="fab fa-whatsapp"></i>Pesan Via Whatsapp</button>
+          </div>
+        </div>
+      </div> 
+      </div>
+    </div>
+</section>
+
+<!--Footer-->
+<footer class="bg-danger text white text-center p-3">
+  <p>
+    @ 2025 Toko kapibaraku | dibuat dengan 
+    <i class="fa-solid fa-heart text danger"></i> oleh
+    <a href="https://www.instagram.com/zelllym/" class="text-white fw-bold">zelllym.ww</a>
+  </p>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ <script>
+      const kategoriLinks = document.querySelectorAll(".kategori-item");
+      const products = document.querySelectorAll(".produk");
+      kategoriLinks.forEach((link) => {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          const kategori = this.dataset.kategori;
+          products.forEach((product) => {
+            if (kategori == "semua" || product.dataset.kategori === kategori) {
+              product.style.display = "block";
+            } else {
+              product.style.display = "none";
+            }
+            document.getElementById("kategori").scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+      });
+
+      const pesanBtns = document.querySelectorAll(".pesan-btn");
+      pesanBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const card = this.closest(".card-body");
+          const nama = card.querySelector(".nama-produk").innerText;
+          const harga = card.querySelector(".harga-produk").innerText;
+          const nomorWA = "6285962902450";
+          const pesan = `Halo, saya tertarik membeli *${nama}* dengan harga *${harga}. Apakah masih tersedia?`;
+          const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+          window.open(url, "_blank");
+        });
+      });
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.2 });
+      fadeEls.forEach(el => observer.observe(el));
+
+       const produkEls = document.querySelectorAll('.produk');
+const produkObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const produk = entry.target;
+      const delay = [...produkEls].indexOf(produk) * 100; 
+      setTimeout(() => produk.classList.add('show'), delay);
+    }
+  });
+}, { threshold: 0.2 });
+
+produkEls.forEach(el => produkObserver.observe(el));
+    </script>
+  </body>
+</html>

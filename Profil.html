@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profil - Toko Capybaraku</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<style>
+  /* 🌸 STYLE DASAR */
+  body {
+    padding-top: 70px;
+    background:  #5f5f5f;;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* ANIMASI FADE-IN */
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  /* 🌸 SECTION PROFIL */
+  .profil-section {
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 🌸 HEADER CAPYBARA DENGAN CAHAYA */
+  .capy-header {
+    height: 90vh;
+    background: url('img/bacground(7).jpeg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  /* 🌸 LOGO */
+ .logo-img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 3px solid #fff; /* 🔹 pinggir putih dibuat tipis */
+  background-color: rgba(0, 0, 0, 0.2); /* 🔹 sedikit gelap di belakang logo */
+  padding: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* 🔹 bayangan hitam lembut */
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+  /* 🌸 TEKS UTAMA */
+  .capy-title {
+    font-size: 3.1rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-top: 25px;
+    position: relative;
+    z-index: 1;
+  }
+  /* 🌸 PROFIL TEKS */
+  .profil-text {
+    max-width: 600px;
+  }
+
+  .profil-text h1 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 3rem;
+    color: #db3c4c;
+  }
+
+  .profil-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: white;
+  }
+
+  .profil-text p {
+    font-size: 1.05rem;
+    color: #444;
+    margin-top: 15px;
+    color: white;
+  }
+
+  /* 🌸 FOTO PROFIL */
+  .profil-img {
+    width: 320px;
+    border-radius: 20px;
+    padding: 6px;
+    background: linear-gradient(135deg, #dc3545, #777);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    opacity: 0;
+  }
+
+  .profil-img.show {
+    opacity: 1;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .profil-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 35px rgba(190, 64, 77, 0.45);
+  }
+
+  /* 🌸 GALERI */
+  .galeri-card {
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgb(224, 24, 24);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    background: linear-gradient(135deg, #ff4b4b, #7a7a7a);
+    padding: 5px;
+    animation: fadeUp 1.5s ease;
+  }
+
+  .galeri-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .galeri-img {
+    border-radius: 10px;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+  }
+
+  /* 🌸 FOOTER */
+  footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 80px;
+  }
+
+  /* 🌸 RESPONSIVE */
+  @media (max-width: 768px) {
+    .profil-section {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+    .profil-img {
+      margin-bottom: 30px;
+    }
+    .capy-title {
+      font-size: 2.3rem;
+    }
+    .logo-img {
+      width: 190px;
+      height: 190px;
+    }
+  }
+  /* 🩶 Box Tentang Kami */
+.about-box {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  color: #333;
+  text-align: justify;
+  line-height: 1.8;
+  border-left: 6px solid #dc3545;
+}
+/* 🩷 Palak Kapibara di bawah tulisan */
+/* 🩷 Tiga Palak Kapibara Berjejer + Teks */
+.capy-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin-top: 25px;
+}
+
+.capy-head {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #dc3545;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.capy-head:hover {
+  transform: scale(1.1);
+}
+
+.capy-text {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #d63333;
+}
+/* 🩷 Animasi Kapibara Bergerak Lembut */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.capy-head {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #dc3545;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 🩷 Efek Hover Tambahan */
+.capy-head:hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+/* 🩷 Teks di bawah gambar */
+.capy-text {
+  text-align: center;
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-danger fixed-top shadow-sm navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="img/download logo.jpg" alt="Logo Toko" width="60" class="me-2 rounded-circle"/>
+      <span>Toko Capybaraku</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="index.html#home">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">Tentang Kami</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Kategori Produk</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Semua Produk (所有产品)</a></li>
+            <li><a class="dropdown-item" href="#">Notebook (笔记本)</a></li>
+            <li><a class="dropdown-item" href="#">Gantungan (钥匙扣)</a></li>
+            <li><a class="dropdown-item" href="#">Alat Tulis (文具)</a></li>
+            <li><a class="dropdown-item" href="#">Kotak pensil Capybara (铅笔盒) </a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="Kategoridropdown">Kontak kami </a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.instagram.com/zelllym?igsh=ZHpxajFiY3N5MzQw"target="_blank"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@zell_ww.lym?_t=ZS-90lRSqVXHzM&_r=1"><i class="fa-brands fa-tiktok"></i>Tiktok</a></li>
+            <li><a  href="https://wa.me/62895962902450>"><i class="fa-brands fa-whatsapp"></i>Whatsapp</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="My Profil.html">My Profil</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bagian Profil -->
+ <!-- Bagian Header Capybara -->
+<section class="capy-header d-flex flex-column align-items-center justify-content-center text-center">
+  <div class="capy-logo">
+    <img src="img/download logo.jpg" alt="Logo Capybara" class="logo-img">
+  </div>
+  <h1 class="capy-title">Welcome to my Capybara store</h1>
+</section>
+<section class="profil-section container">
+  <div class="row align-items-center">
+    <div class="col-md-7 profil-text fade-up">
+      <h1>Hey there!</h1>
+      <h2>大家好，欢迎来到capybara网点</h2>
+      <p>
+        Saya pemilik <b>Toko Capybaraku</b> — tempat menjual berbagai alat tulis, notebook, dan gantungan lucu bertema capybara. 
+        Saya suka membuat produk yang membawa kebahagiaan dan warna dalam aktivitas belajar kamu! 
+        Yuk kenal lebih dekat dan temukan produk favoritmu.很多可爱的东西啊♡
+      </p>
+    </div>
+    <div class="col-md-5 text-center">
+      <img src="img/myprofil.jpeg" alt="Foto Profil" class="profil-img shadow">
+    </div>
+  </div>
+</section>
+<!-- Galeri Capybara -->
+<section class="container my-5">
+  <h3 class="text-center mb-4" style="color:#ec3b3b; font-weight:bold;">My Capybara Galery</h3>
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="galeri-card">
+        <img src="img/kk.jpeg" class="img-fluid galeri-img" alt="Capybara 1">
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="galeri-card">
+        <img src="img/tengah.jpeg" class="img-fluid galeri-img" alt="Capybara 2">
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="galeri-card">
+        <img src="img/kkk.jpeg" class="img-fluid galeri-img" alt="Capybara 3">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🩶 Section Tentang Kami -->
+<section class="container my-5">
+  <div class="about-box mx-auto p-4">
+    <h3 class="text-center mb-3" style="color:#d60000;">Tentang Kami</h3>
+    <p>
+      我们的 Capybara 网店源于我们对可爱多彩事物的热爱。
+我们主打 Capybara 主题产品，例如笔记本、衣架和文具，它们都倾注了我们的爱与创意。
+我们相信，每一件小物件都能为每位顾客带来无限的快乐。
+感谢您光临本店——希望您能找到心仪之物♡
+    </p>
+  </div>
+</section>
+
+<!-- 🩷 Palak Kapibara di bawah tulisan -->
+    <!-- 🩷 Palak Kapibara di bawah tulisan -->
+<div class="capy-footer">
+  <img src="img/profil5.jpg" alt="Kapibara 1" class="capy-head">
+  <p class="capy-text">我们等你买哦♡♡</p>
+  <img src="img/profil6.jpg" alt="Kapibara 2" class="capy-head">
+  <p class="capy-text">快来看看!!!</p>
+  <img src="img/profil4.jpg" alt="Kapibara 3" class="capy-head">
+  <p class="capy-text">立即购买♡!</p>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Toko Capybaraku. Semua hak cipta dilindungi.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const img = document.querySelector('.profil-img');
+  setTimeout(() => img.classList.add('show'), 300); // animasi foto muncul setelah 0.3 detik
+});
+</script>
+</body>
+</html>
